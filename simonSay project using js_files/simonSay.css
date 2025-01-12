@@ -1,0 +1,52 @@
+.body{
+    display:flex;
+    justify-content:center;
+    text-align: center;
+
+}
+h1{
+    text-align: center;
+}
+h4{
+    text-align: center;
+}
+.btn-container{
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    
+}
+/* .line-one{
+    margin:20px;
+} */
+.btn{
+    height:200px;
+    width:200px;
+    border:7px black solid;
+    border-radius:20px;
+    margin:10px;
+
+}
+.orange{
+    background-color:rgb(238, 183, 82);
+}
+
+.green{
+    background-color: rgb(106, 216, 106);
+}
+/* .line-two{
+    
+}*/
+.purple{
+    background-color: rgb(226, 107, 226);
+}
+
+.teal{
+    background-color: rgb(71, 223, 223);
+}
+.flash{
+    background-color: azure;
+}
+.userflash{
+    background-color:rgb(54, 46, 46);
+}

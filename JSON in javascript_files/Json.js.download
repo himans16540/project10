@@ -1,0 +1,97 @@
+let jsonResponse=`{"fact":"Cats purr at the same frequency as an idling diesel engine, about 26 cycles per second.","length":87}`;
+let vaildResponse=JSON.parse(jsonResponse);
+console.log(vaildResponse);
+
+//jSOn stringify
+
+let hima={
+    name:"HimanshU",
+    marks:92,
+    Employe:"Infosys,MicroSoft",
+};
+JSON.stringify(hima);
+
+//sending first Api request using js
+
+// let url="https://catfact.ninja/fact";
+
+// fetch(url)
+// .then((res)=>{
+//     console.log(res);
+//     return res.json();
+// })
+// .then((data)=>{
+//     console.log(data);
+//     return fetch(url);
+// })
+// .then((res)=>{
+//     return res.json();
+// })
+// .then((data2)=>{
+//     console.log("data2",data2.fact);
+// })
+// .catch((err)=>{
+//     console.log("ERR__:",err);
+// })
+
+// let url="https://catfact.ninja/fact";
+ 
+
+// async  function getFacts(){
+//     try{
+//         let res=await axios.get(url);
+//         console.log(res.data);
+//     }
+//     catch(err){
+//         console.log("error",err);
+//     }
+// }
+//print fact on page
+// let btn=document.querySelector("button");
+// btn.addEventListener("click",async()=>{
+//     console.log("button was clicked");
+//     let fact= await getFacts();
+//     console.log(fact);
+
+//     let p=document.querySelector("#result");
+//     p.innerText=fact;
+
+
+// });
+
+// let url="https://catfact.ninja/fact";
+
+
+// async function getFacts(){
+//     try{
+//         let res=await axios.get(url);
+//      return res.data.fact;
+//     }
+//     catch(err){
+//         console.log("error__",err);
+//         return "error not found";
+//     }
+// }
+//generate random dog img
+
+let btn=document.querySelector("button");
+let url2="https://dog.ceo/api/breeds/image/random";
+btn.addEventListener("click",async()=>{
+    let  link=await getImgs();
+    console.log(link);
+    let img=document.querySelector("#result");
+    img.setAttribute("src",link);
+    
+})
+
+
+async function getImgs(){
+    try{
+        let res=await axios.get(url2);
+        return res.data.message;
+    }
+    catch(err){
+        console.log("error__",err);
+        return "error not found";
+    }
+}

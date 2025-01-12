@@ -1,0 +1,96 @@
+let gameSeq = [];
+let userSeq = [];
+// Available button colors
+let btns = ["orange", "green", "purple", "teal"];
+// Game state
+let started = false;
+let level = 0;
+
+// Select elements
+let h4 = document.querySelector("h4");
+// let allBtns = document.querySelectorAll(".btn");
+
+// (1) Start game on keypress
+document.addEventListener("keypress", function () {
+    if (!started) {
+        console.log("Game started");
+        started = true;
+        levelUp();
+    }
+});
+
+// Flash the button
+function gameFlash(btn) {
+    btn.classList.add("flash");
+    setTimeout(function () {
+        btn.classList.remove("flash");
+    }, 250);
+}
+
+function userFlash(btn) {
+    btn.classList.add("userflash");
+    setTimeout(function () {
+        btn.classList.remove("userflash");
+    }, 250);
+}
+
+// Level up
+function levelUp() {
+    userSeq=[];
+    level++;
+    h4.innerText = `Level ${level}`;
+
+    // Choose a random color
+    let randomIdx = Math.floor(Math.random() * btns.length);
+    let randomColor = btns[randomIdx];
+    let randomBtn = document.querySelector(`.btn.${randomColor}`);
+    
+    console.log(randomIdx, randomColor, randomBtn);
+
+    gameSeq.push(randomColor); // Add to game sequence
+    console.log(gameSeq);
+    gameFlash(randomBtn);
+}
+
+function checkAns(idx){
+    
+    if(userSeq[idx]===gameSeq[idx]){
+        // console.log("same value");
+        if(userSeq.length===gameSeq.length){
+            setTimeout(levelUp,1000);
+        }
+    }
+    else{
+        h4.innerHTML=`game over!<b>your score was ${level}</b><br>press any key to start `;
+        document.querySelector("body").style.backgroundColor="red";
+        setTimeout(function(){
+            document.querySelector("body").style.backgroundColor="white";
+        },700);
+        reset();
+        
+    }
+    
+}
+
+//Button press
+function btnPress() {
+    
+    let btn = this;
+    userFlash(btn);
+
+    //btn color
+    userColor=btn.getAttribute("id");
+    // 
+    userSeq.push(userColor);
+    checkAns(userSeq.length-1);
+}
+let allBtns=document.querySelectorAll(".btn");
+for(let i=0;i<allBtns.length;i++){
+    allBtns[i].addEventListener("click",btnPress);
+}
+function reset(){
+    started=false;
+    gameSeq=[];
+    userSeq=[];
+    level=0;
+}
